@@ -1,11 +1,16 @@
 import app from "./app";
-
+import { envVars } from "./app/config/env";
 
 function bootstrap() {
   // Start the server
-  app.listen(4000, () => {
-    console.log(`Server is running on http://localhost:${4000}`);
-  });
+  try {
+    app.listen(envVars.PORT, () => {
+      console.log(`Server is running on http://localhost:${envVars.PORT}`);
+    });
+  } catch (error) {
+    console.error("Faild to start server: ", error);
+    process.exit(1);
+  }
 }
 
 bootstrap();
