@@ -32,6 +32,15 @@ const envSchema = z.object({
       "Invalid better auth session token update age format",
     )
     .transform((v) => v as ms.StringValue),
+  EMAIL_SENDER_SMTP_USER: z.string().min(1),
+  EMAIL_SENDER_SMTP_PASS: z.string().min(1),
+  EMAIL_SENDER_SMTP_HOST: z.string().min(1),
+  EMAIL_SENDER_SMTP_PORT: z.coerce.number().int().positive(),
+  EMAIL_SENDER_SMTP_FROM: z.email(),
+  GOOGLE_CLIENT_ID: z.string().min(1),
+  GOOGLE_CLIENT_SECRET: z.string().min(1),
+  GOOGLE_CALLBACK_URL: z.url(),
+  FRONTEND_URL: z.url(),
 });
 
 // type EnvConfig = z.infer<typeof envSchema>;
